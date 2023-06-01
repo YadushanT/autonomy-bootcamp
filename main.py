@@ -11,7 +11,24 @@ Hints:
 """
 
 # Import whatever libraries/modules you need
-
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
 import numpy as np
+import torchvision.transforms as transforms
+from matplotlib import pyplot
+from keras.datasets import cifar10
+from torchvision import datasets
+from torch.utils.data.sampler import SubsetRandomSampler
+
 
 # Your working code here
+
+#check availability of CUDA
+trainGPU = torch.CUDA.is_available()
+
+if not trainGPU:
+    print("CUDA not available. Training on CPU")
+else:
+    print("CUDA available, training on GPU")
+
