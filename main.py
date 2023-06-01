@@ -14,11 +14,13 @@ Hints:
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+import matplotlib.pyplot as plt
 import numpy as np
+import torchvision
 import torchvision.transforms as transforms
+from torchvision import datasets
 from matplotlib import pyplot
 from keras.datasets import cifar10
-from torchvision import datasets
 from torch.utils.data.sampler import SubsetRandomSampler
 
 
@@ -27,8 +29,24 @@ from torch.utils.data.sampler import SubsetRandomSampler
 #check availability of CUDA
 trainGPU = torch.CUDA.is_available()
 
+"""
 if not trainGPU:
     print("CUDA not available. Training on CPU")
 else:
     print("CUDA available, training on GPU")
+"""
+
+transform = transforms.Compose([
+    transforms.ToTensor(),
+    transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
+])
+
+batch_size = 4
+
+train_dataset = torchvision.datasets.CIFAR10(root='./data', train=True, download=True, transform=transform)
+test_dataset = torchvision.datasets.CIFAR10(root='./data', train=False, download=True, transform=transform)
+train_loader = torch.utils.data.Dataloader(train_dataset, batch_size=batch_size, shuffle=True)
+test_loader = torch.utils.data.Dataloader(train_dataset, batch_size=batch_size, shuffle=False)
+
+classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
 
