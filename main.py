@@ -58,7 +58,7 @@ def imshow(img):
 
 
 # get some random training images
-dataiter = iter(trainloader)
+dataiter = iter(train_loader)
 images, labels = next(dataiter)
 
 # show images
