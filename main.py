@@ -131,6 +131,28 @@ with torch.no_grad():
 examples = iter(test_loader)
 samples, labels = examples.next()
 
+'''
+def plot_losses():
+    plt.plot(train_losses, '-o')
+    plt.plot(test_losses, '-o')
+    plt.title('Train vs Test Loss')
+    plt.xlabel('Epoch')
+    plt.ylabel('Loss')
+    plt.legend(['Training', 'Test'])
+    plt.savefig("loss.png")
+    plt.close()
+
+def plot_accu():
+    plt.plot(train_accu, '-o')
+    plt.plot(test_accu, '-o')
+    plt.title('Train vs Test Accuracy')
+    plt.xlabel('Epoch')
+    plt.ylabel('Accuracy')
+    plt.legend(['Train', 'Valid'])
+    plt.savefig("accuracy.png")
+    plt.close()
+'''
+
 def imshow(img):
     img = img/2 + 0.05
     npimg = img.numpy()
